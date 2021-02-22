@@ -1,0 +1,23 @@
+#!/bin/bash
+#SBATCH -N 2
+#SBATCH -p RM
+#SBATCH -t 48:00:00
+#SBATCH -J vapo_fss
+
+echo Start time:
+date +"%D %T"
+echo
+
+module load python3/3.5.2_gcc_mkl
+cd /home/jcolditz/twitter/RITHM/parser/
+
+#python3 freq_out.py -dir /pylon5/be5fpap/jcolditz/UArk/recipes/vape_policy/data_vape/ -out ../vapepolicy/ -kwfile ../policy.kws -dates 20190901 20200229 -fstem testrun
+
+python3 subsample.py -dir /pylon5/be5fpap/jcolditz/UArk/recipes/vape_policy/data_vape/ -out ../vapepolicy/ -kwfile ../ban.kws -dates 20190913 20200215 -fstem ban -r 0.0105 -s
+
+python3 subsample.py -dir /pylon5/be5fpap/jcolditz/UArk/recipes/vape_policy/data_vape/ -out ../vapepolicy/ -kwfile ../policy.kws -dates 20190913 20200215 -fstem policy -r 0.0105 -s
+
+
+echo
+echo End time:
+date +"%D %T"

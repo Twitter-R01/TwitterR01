@@ -1,0 +1,35 @@
+#!/bin/bash
+#SBATCH -N 2
+#SBATCH -p RM
+#SBATCH -t 48:00:00
+#SBATCH -J Hook_C19
+
+echo Start time:
+date +"%D %T"
+echo
+
+# Load the correct version of python
+module load python3/3.5.2_gcc_mkl
+
+# Navigate to your RITHM directory
+cd /home/jcolditz/twitter/RITHM/parser/
+
+# Parse through end of September
+python3 parser.py -f /pylon5/be5fpap/jcolditz/UArk/recipes/hookah/template.par -dates 20200901 20200999
+
+# Run frequency counts witout and with retweets
+python3 freq_out.py -dir /pylon5/be5fpap/jcolditz/UArk/recipes/hookah/data/ -out ../covid_project/ -kwfile ../covid.kws -fstem hookah
+python3 freq_out.py -dir /pylon5/be5fpap/jcolditz/UArk/recipes/hookah/data/ -out ../covid_project/ -kwfile ../covid.kws -fstem hookah -rt
+
+# Generate some subsamples to look at content (pre-COVID, early-COVID, etc.)
+python3 subsample.py -r 500 -dir /pylon5/be5fpap/jcolditz/UArk/recipes/hookah/data/ -dates 20200101 20200299 -out ../covid_project/ -kwfile ../covid.kws -fstem jan-feb_test
+python3 subsample.py -r 500 -dir /pylon5/be5fpap/jcolditz/UArk/recipes/hookah/data/ -dates 20200301 20200599 -out ../covid_project/ -kwfile ../covid.kws -fstem mar-may_test
+python3 subsample.py -r 500 -dir /pylon5/be5fpap/jcolditz/UArk/recipes/hookah/data/ -dates 20200601 20200999 -out ../covid_project/ -kwfile ../covid.kws -fstem jun-sep_test
+
+# Don't change this directory
+cd /pylon5/be5fpap/jcolditz/scripts/partial_data/
+python3 partial_data.py -in /pylon5/be5fpap/jcolditz/UArk/recipes/hookah/data/ -out /pylon5/be5fpap/jcolditz/UArk/recipes/hookah/covid_project/ -dates 20200101 20200930 -latency 600 -missing
+
+echo
+echo End time:
+date +"%D %T"

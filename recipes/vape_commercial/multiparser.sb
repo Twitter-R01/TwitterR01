@@ -1,0 +1,15 @@
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH -p RM
+#SBATCH -t 48:00:00
+#SBATCH -J longvape
+
+echo Start time:
+date +"%D %T"
+
+module load python3/3.5.2_gcc_mkl
+cd /home/jcolditz/twitter/RITHM/parser/
+python3 parser.py -f $1 -d $2 $3
+
+echo End time:
+date +"%D %T"

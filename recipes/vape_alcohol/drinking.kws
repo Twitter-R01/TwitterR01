@@ -1,0 +1,35 @@
+
+# Verbiage for drinking
+drank
+drink* 
+
+# Alcoholic beverages
+alcohol
+booze
+beer*
+cider*
+wine*
+whiskey
+vodka
+rum
+tequila
+cocktail*
+liquor
+shots
+
+# Intoxication states
+drunk
+hammered
+wasted
+tipsy
+shitfaced
+blackout*
+blacked
+hangover | hungover
+
+# Places to drink
+pregame
+bar | bars 
+pub | pubs
+party
+*club

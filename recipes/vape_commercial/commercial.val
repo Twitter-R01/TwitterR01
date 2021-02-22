@@ -1,0 +1,8 @@
+# Use this for relevant
+& relevant >= 0.847
+
+# Use this for commercial
+& com_vape >= 0.344
+
+# Use this for pro-vape
+#& pro_vape >= 0.837

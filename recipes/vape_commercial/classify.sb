@@ -1,0 +1,17 @@
+#!/bin/bash
+#SBATCH -N 4
+#SBATCH -p RM
+#SBATCH -t 48:00:00
+#SBATCH -J LSTM_app
+
+### Apply LSTM classifiers 
+echo Start time:
+date +"%D %T"
+
+module load AI/anaconda3-5.1.0_gpu
+source activate twitter_env
+cd /pylon5/be5fpap/jcolditz/scripts/apply_LSTM/
+python predict_labels_LSTM.py -dir /pylon5/be5fpap/jcolditz/UArk/recipes/vape_commercial/data/ -out ../ml_applied/
+
+echo End time:
+date +"%D %T"

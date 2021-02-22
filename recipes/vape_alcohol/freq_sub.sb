@@ -1,0 +1,33 @@
+#!/bin/bash
+#SBATCH -N 2
+#SBATCH -p RM
+#SBATCH -t 48:00:00
+#SBATCH -J EtOH_FS0
+
+echo Start time:
+date +"%D %T"
+
+# Load the correct version of python
+module load python3/3.5.2_gcc_mkl
+
+# Navigate to the RITHM directory
+cd /home/jcolditz/twitter/RITHM/parser/
+
+# This will produce a bunch of output about frequencis for different keyword approaches and subsamples to look at relevant content (second half of 2019)
+
+# Run frequencies for each of the keyword files
+python3 freq_out.py -dir /pylon5/be5fpap/jcolditz/UArk/recipes/vape_alcohol/data/ -out ../freq_sub/ -kwfile ../drinking.kws -fstem ALL
+python3 freq_out.py -dir /pylon5/be5fpap/jcolditz/UArk/recipes/vape_alcohol/data/ -out ../freq_sub/ -kwfile ../drinking_verbs.kws -fstem verbs
+python3 freq_out.py -dir /pylon5/be5fpap/jcolditz/UArk/recipes/vape_alcohol/data/ -out ../freq_sub/ -kwfile ../drinking_places.kws -fstem places
+python3 freq_out.py -dir /pylon5/be5fpap/jcolditz/UArk/recipes/vape_alcohol/data/ -out ../freq_sub/ -kwfile ../intox.kws -fstem intox
+python3 freq_out.py -dir /pylon5/be5fpap/jcolditz/UArk/recipes/vape_alcohol/data/ -out ../freq_sub/ -kwfile ../bev_types.kws -fstem bevs
+
+# Get subsamples for each of the keyword files
+python3 subsample.py -r 1000 -dir /pylon5/be5fpap/jcolditz/UArk/recipes/vape_alcohol/data/ -dates 20190701 20191299 -out ../freq_sub/ -kwfile ../drinking_verbs.kws -fstem verbs
+python3 subsample.py -r 1000 -dir /pylon5/be5fpap/jcolditz/UArk/recipes/vape_alcohol/data/ -dates 20190701 20191299 -out ../freq_sub/ -kwfile ../drinking_places.kws -fstem places
+python3 subsample.py -r 1000 -dir /pylon5/be5fpap/jcolditz/UArk/recipes/vape_alcohol/data/ -dates 20190701 20191299 -out ../freq_sub/ -kwfile ../intox.kws -fstem intox
+python3 subsample.py -r 1000 -dir /pylon5/be5fpap/jcolditz/UArk/recipes/vape_alcohol/data/ -dates 20190701 20191299 -out ../freq_sub/ -kwfile ../bev_types.kws -fstem bevs
+
+
+echo End time:
+date +"%D %T"

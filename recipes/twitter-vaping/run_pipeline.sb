@@ -1,0 +1,26 @@
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH -p RM
+#SBATCH -t 48:00:00
+#SBATCH -J LSTM_app
+
+# Make directories if needed on first run
+#mkdir results
+#mkdir classifiers
+
+# If there are old CSV output files, remove them
+rm *.csv
+
+# Make sure emojilist5 is still here though
+cp /home/jcolditz/twitter/RITHM/parser/emojilist5.csv .
+
+echo Start time:
+date +"%D %T"
+
+module load AI/anaconda3-5.1.0_gpu
+source activate twitter_env
+
+python3 evaluate_models.py
+
+echo End time:
+date +"%D %T"

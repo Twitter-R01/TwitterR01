@@ -1,0 +1,12 @@
+{
+	"metadata_remove": true,
+	"emoji_remove": true,
+	"negation_expand": true,
+	"punctuation_remove": true,
+	"digits_remove": true,
+	"negation_mark": true,
+	"normalize": true,
+	"stemming": true,
+	"stopwords_remove": true,
+	"lower": true
+}

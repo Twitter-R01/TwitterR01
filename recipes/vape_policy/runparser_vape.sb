@@ -1,0 +1,16 @@
+#!/bin/bash
+#SBATCH -N 2
+#SBATCH -p RM
+#SBATCH -t 48:00:00
+#SBATCH -J vape_par
+
+echo Start time:
+date +"%D %T"
+
+module load python3/3.5.2_gcc_mkl
+cd /home/jcolditz/twitter/RITHM/parser/
+python3 parser.py -f /pylon5/be5fpap/jcolditz/UArk/recipes/vape_policy/template_vape2019.par
+python3 parser.py -f /pylon5/be5fpap/jcolditz/UArk/recipes/vape_policy/template_vape2020.par
+
+echo End time:
+date +"%D %T"

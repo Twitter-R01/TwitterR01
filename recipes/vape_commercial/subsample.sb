@@ -1,0 +1,36 @@
+#!/bin/bash
+#SBATCH -N 2
+#SBATCH -p RM
+#SBATCH -t 48:00:00
+#SBATCH -J long_sub
+
+echo Start time:
+date +"%D %T"
+
+module load python3/3.5.2_gcc_mkl
+cd /home/jcolditz/twitter/RITHM/parser/
+
+### Typical arguments used:
+# "-r" reduction value (+1 argument; required)
+#      r==0  : no reduction
+#      0<r<1 : fractional reduction (i.e., % of tweets [per day if stratified])
+#      r>=1  : count reduction (i.e., keep p tweets [does not work w/ stratification])
+# "-s" stratify subsample per daily tweet frequency (optional)
+#
+# "-dir" directory with data in it (required)
+# "-out" directory to send the output to (strongly suggested)
+# "-dates" dates that we constrain the output to (optional)
+# "-kwfile" keyword file to constrain the output to (optional)
+# "-fstem" stem to add to output file name for disambiguation (optional)
+###
+
+
+#python3 subsample.py -r 1000 -dir /home/jcolditz/twitter/Pylon5/parser_out/vape_long/ml_applied/ -dates 20190910 20190916 -valfile ../commercial.val -out ../subsamples/ -fstem 20190910-16_com
+
+#python3 subsample.py -r 1000 -dir /home/jcolditz/twitter/Pylon5/parser_out/vape_long/ml_applied/ -dates 20170101 20171231 -valfile ../commercial.val -out ../subsamples/ -fstem 2017_com
+
+python3 subsample.py -r 1000 -dir /home/jcolditz/twitter/Pylon5/parser_out/vape_long/ml_applied/ -dates 20180817 20181019 -valfile ../commercial.val -out ../subsamples/ -fstem 2018calibration
+
+
+echo End time:
+date +"%D %T"

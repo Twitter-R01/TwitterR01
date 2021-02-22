@@ -1,0 +1,16 @@
+#!/bin/bash
+#SBATCH -N 2
+#SBATCH -p RM
+#SBATCH -t 48:00:00
+#SBATCH -J vapo_s02
+
+echo Start time:
+date +"%D %T"
+
+module load python3/3.5.2_gcc_mkl
+cd /home/jcolditz/twitter/RITHM/parser/
+python3 subsample.py -r 0.02 -dir /pylon5/be5fpap/jcolditz/UArk/recipes/vape_policy/data/ -dates 20190904 20191231 -out ../subsamples/ -kwfile ../t21_v2.kws
+
+
+echo End time:
+date +"%D %T"

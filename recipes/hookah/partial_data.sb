@@ -1,0 +1,16 @@
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH -p RM
+#SBATCH -t 48:00:00
+#SBATCH -J partial
+
+### Check for partial data 
+echo Start time:
+date +"%D %T"
+
+module load python3/3.5.2_gcc_mkl
+cd /pylon5/be5fpap/jcolditz/scripts/partial_data/
+python3 partial_data.py -in /pylon5/be5fpap/jcolditz/UArk/recipes/hookah/data/ -out /pylon5/be5fpap/jcolditz/UArk/recipes/hookah/ -dates 20200101 20200831 -latency 600 -missing -file test
+
+echo End time:
+date +"%D %T"

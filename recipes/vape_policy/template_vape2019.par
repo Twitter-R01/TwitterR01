@@ -1,0 +1,86 @@
+### RITHM Parser Template --------------------------------------------------------
+# This is a basic template file that is used to parse raw JSON data
+# into CSV files that you can work with more easily. You can save 
+# multiple versions of these files (e.g., one for each project). This
+# will make it easier to re-trace your steps later. All files should 
+# include the *.par extension (project1.par, project2.par, etc.). 
+
+
+### Directories:
+# DIR_IN should be set to where your JSON data files are located.
+# DIR_OUT should be set to where your CSV files will be saved.
+# You must manually create these directories before running this process;
+# new directories will not be created for you. Always use forward-slashes
+# (i.e., "/" is good) and NOT backslashes (i.e., "\" is no good). Always
+# include a final slash at the end of the directory (or else it will be 
+# treated as part of the file name, which is not a recommended approach).
+###
+DIR_IN: /pylon5/be5fpap/jcolditz/streamer_raw/2019/
+DIR_OUT: /pylon5/be5fpap/jcolditz/UArk/recipes/vape_policy/data_vape/
+
+
+### Start & End dates:
+# This narrows the date range that you are searching within. For example, 
+# if you only want to look at a subset of all data that have been streamed.
+# End date is inclusive. Date format is required to be: YYYYMMDD
+###
+START: 20190901
+END: 20191231
+
+
+### Mode:
+#  This controls text and tabulation output.
+#  1 = Tab-separated value (TSV) output with minimal format changes. (default)
+#  Refer to parselogic.py documentation for additional options.
+###
+MODE: 1
+
+
+### Lowercase:
+#  This controls text output and takes precedence over MODE formatting.
+#  If set to "true", this will lowercase tweet text output.
+###
+LCASE: false
+
+
+### Emoji:
+# Emoji are delivered in Unicode format, which is not human-readable.
+# Select an "emojilist" file to translate emoji to human-readable text.
+# Leave this parameter blank if you prefer raw Unicode representations.
+###
+EMOJI: emojilist6.csv
+
+
+### Test:
+#  This will print out descriptive data related to processing each JSON file.
+#  Prints to the terminal or batch file output (e.g., SLURM).
+###
+TEST: true
+
+
+### Performance optimization:
+# Value set to "high" will load entire JSON data files into RAM for processing.
+# This results in faster processing but large files may over-run RAM and crash.
+# Set this to "low" if large data files are causing the process to crash.
+# In the event that a file fails to read in "high", it will try again in "low".
+# This may also happen if a file is malformed (e.g., JSON terminates abruptly).
+###
+MEMORY: high
+
+
+### Keywords:
+# !!! IMPORTANT: THIS MUST BE THE FINAL ENTRY IN THE TEMPLATE FILE !!!
+# Each keyword or logic function is a separate line AFTER "KEYWORDS:" command.
+# It is generally best to use identical keywords to those that you used
+# to stream the data, unless you have a good reason to exclude some.
+# Each separate line essentially functions as an OR operator.
+#
+# Boolean searches may be used, but are not recommended in most use cases:
+# "&" = AND. "|" = OR. "!" = NOT must be prefixed to the keyword (e.g., "this & !that")
+# Parentheses not supported: combine " & " and " | " operators at your own risk!
+# "*" works mostly as expected as a prefix or suffix for keyword stubs. It does 
+# not work within keywords. "***" retrieves ALL available data from JSON files.
+###
+KEYWORDS:
+vape | vapes | vaper | vapers | vaping | vaped
+juul | juuls | juuling

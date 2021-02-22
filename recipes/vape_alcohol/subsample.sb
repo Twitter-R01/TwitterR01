@@ -1,0 +1,45 @@
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH -p RM
+#SBATCH -t 48:00:00
+#SBATCH -J hook_sub
+
+echo Start time:
+date +"%D %T"
+
+module load python3/3.5.2_gcc_mkl
+cd /home/jcolditz/twitter/RITHM/parser/
+
+### Typical arguments used:
+# "-r" reduction value (+1 argument; required)
+#      r==0  : no reduction
+#      0<r<1 : fractional reduction (i.e., % of tweets [per day if stratified])
+#      r>=1  : count reduction (i.e., keep p tweets [does not work w/ stratification])
+# "-s" stratify subsample per daily tweet frequency (optional)
+#
+# "-dir" directory with data in it (required)
+# "-out" directory to send the output to (strongly suggested)
+# "-dates" dates that we constrain the output to (optional)
+# "-kwfile" keyword file to constrain the output to (optional)
+# "-fstem" stem to add to output file name for disambiguation (optional)
+###
+
+
+# 2% of hookah tweets (no additional keyword filters) in January 2020
+python3 subsample.py -r 0.02 -dir /pylon5/be5fpap/jcolditz/UArk/recipes/hookah/data/ -dates 20200101 20200199 -out ../subsamples/ -fstem 202001
+
+
+# Up to 100 tweets per day that also match COVID keywords in March 2020
+#     NOTE: This will result in an error message and not produce any output (stratification is not currently supported for p > 0). 
+#           One reason for this is that it would not be a systematically stratified sample if some days have < 100 tweets.
+#           So it is not currently possible to get p tweets per day because methodologically, it's probably not a good idea to do this.
+python3 subsample.py -r 100 -s -dir /pylon5/be5fpap/jcolditz/UArk/recipes/hookah/data/ -dates 20200301 20200399  -out ../subsamples/ -kwfile ../covid.kws -fstem 202003_covid
+
+
+# All tweets that also match "bar" keywords from 2/18-2/24 2020
+python3 subsample.py -r 0 -dir /pylon5/be5fpap/jcolditz/UArk/recipes/hookah/data/ -dates 20200218 20200224  -out ../subsamples/ -kwfile ../bar.kws -fstem 20200218-24_bar
+
+
+
+echo End time:
+date +"%D %T"
