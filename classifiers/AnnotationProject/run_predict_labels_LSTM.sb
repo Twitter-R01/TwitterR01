@@ -1,0 +1,40 @@
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH -p RM
+#SBATCH -t 48:00:00
+#SBATCH -J PredLSTM
+
+echo Start time:
+date +"%D %T"
+
+# Load the correct version of python
+#module load python3/3.5.2_gcc_mkl
+#module load python/2.7.14_gcc5_np1.13
+module load AI/anaconda3-5.1.0_gpu
+
+# Navigate to the Annotation Directory
+cd /home/ancarey/AnnotationProjects/classification
+
+### The freq_out command 
+# "-dir" is where parsed files are
+# "-out" is where frequency output is saved
+# "-kwfile" points to a specific keyword file (*.kws) to use for frequencies
+# "-kwdir" will use all keyword files (*.kws) in a given directory
+# "-dates" (optional) two YYYYMMDD arguments to define scope of data to look at
+# "-fstem" (optional) a stem to add to the output file name, so you don't over-write or lose track
+# "-rt" will include retweets in counts (default behavior is to exclude them)
+
+#python predict_labels_LSTM.py -d 20180319 20181231
+python jason_predict_labels.py
+
+# small examples: 
+#python3 freq_out.py -dir /pylon5/be5fpap/jcolditz/UArk/recipes/hookah/data/ -out ../summaries/ -kwfile ../hookah.kws -dates 20200101 20200199 -fstem hookah_202001
+#python3 freq_out.py -dir /pylon5/be5fpap/jcolditz/UArk/recipes/hookah/data/ -out ../summaries/ -kwfile ../hookah.kws -dates 20200101 20200199 -fstem hookah_202001 -rt
+#python3 freq_out.py -dir /pylon5/be5fpap/jcolditz/UArk/recipes/hookah/data/ -out ../summaries/ -kwfile ../covid.kws -dates 20200301 20200399 -fstem covid_202003
+
+# big example:
+#python3 freq_out.py -dir /pylon5/be5fpap/ancarey/UArk/recipes/hookah/data/ -out ../summaries/ -kwfile ../hookah.kws -fstem hookah_20172020rt -rt
+#python3 freq_out.py -dir /pylon5/be5fpap/ancarey/UArk/recipes/hookah/data/ -out ../summaries/ -kwfile ../hookah.kws -fstem hookah_20172020
+
+echo End time:
+date +"%D %T"
