@@ -1,0 +1,50 @@
+ORDINAL	VARIABLE	STATUS	DESCRIPTION
+0	u_id	Ok	User ID
+1	u_handle	Ok	User Handle/Screen Name
+2	u_name	Ok	User Name
+3	u_desc	Ok	User description
+4	u_url	Ok	User URL (link to personal website)
+5	u_create	Ok	Date user profile was created
+6	u_tweets	Ok	Number of total tweets (statuses) by that user
+7	u_fo_out	Ok	Number of friends of user
+8	u_fo_in	Ok	Number of followers of user
+9	u_likes	Ok	Number of likes of user
+10	u_utcoff	Deprecated	Number of public lists that user is member of
+11	u_locate	Ok	Location of user
+12	u_geotag	Deprecated	User geotag (geo_enabled)
+13	u_lang	Ok	User language
+14	u_imgurl	Ok	User profile image URL
+15	u_bgurl	Ok	User profile banner URL
+16	u_privat	Ok	User protected (private) or not
+17	u_verify	Ok	User verified or not
+18	u_n_capt	Blank	Number of tweets captured for the user
+19	t_id	Ok	Tweet ID
+20	t_text	Ok	Text of the user generated tweet
+21	t_quote	Ok	Text of the referenced subtweet
+22	t_url	Ok	Tweet URL
+23	t_date	Ok	Date of tweet
+24	t_geopoint	Ok	Tweet geo latitude and longitude - point
+25	t_geopoly	Ok	Tweet geo latitude and longitude - polygon
+26	t_place	Ok	Tween Location (place)
+27	t_lang	Ok	Language of tweet
+28	re_t_id	Ok	"If tweet is a reply, this is ID of original tweet"
+29	re_u_id	Ok	"If tweet is a reply, this is user ID of original tweeter"
+30	qu_t_id	Ok	Tweet ID of the original tweet (embedded in the quoted status)
+31	qu_u_id	Ok	User ID of original tweet generator
+32	qu_n_qu	Ok	Number of times original tweet is quoted
+33	qu_n_re	Ok	Number of replies on the original tweet
+34	qu_n_rt	Ok	Number of retweets of original tweet
+35	qu_n_fav	Ok	Number of likes on original tweet
+36	rt_t_tid	Ok	Tweet ID of original tweet (retweeted by user)
+37	rt_u_id	Ok	User ID of original tweet generator
+38	rt_n_qu	Ok	Number of times original tweet is quoted
+39	rt_n_re	Ok	Number of replies on original tweet
+40	rt_n_rt	Ok	Number of retweets of original tweet
+41	rt_n_fav	Ok	Number of likes on original tweet
+42	u_profile	Ok	"When 1, indicates that the user has not altered the theme or background of their user profile"
+43	u_profile_img	Ok	"When 1, indicates that the user has not uploaded their own avatar and a default egg avatar is used instead"
+44	u_list	Ok	Number of public lists that user is a member of
+45	t_hashtags	Ok	Number of hashtags in the tweet text (calculated as length of hashtag objects array)
+46	t_urls	Ok	Number of URLs in tweet
+47	t_mentions	Ok	Number of user mentions in tweet
+48	t_media	Ok	Number of media objects posted in tweet
