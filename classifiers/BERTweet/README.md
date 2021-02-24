@@ -1,0 +1,1 @@
+To use this script, the coded spreadsheets must be converted to a UTF-8 encoded .csv. To do this, just open the .xls or .xlsx and click File > Save As > select "CSV UTF-8 (Comma delimited) (*.csv)" in file extension dropdown > Save.
