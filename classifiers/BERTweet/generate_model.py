@@ -15,11 +15,12 @@ import numpy as np
 import os
 from simpletransformers.classification import ClassificationModel
 from sklearn.model_selection import train_test_split
+from torch.cuda import is_available
 from sklearn.metrics import roc_auc_score
 from scipy.special import softmax
 
 def classification_model(num_labels, output_dir):
-    return ClassificationModel('bertweet', 'vinai/bertweet-base', num_labels=num_labels, use_cuda=False,
+    return ClassificationModel('bertweet', 'vinai/bertweet-base', num_labels=num_labels, use_cuda=is_available(),
                                       args={'num_train_epochs': 10, 
                                             'train_batch_size': 32,
                                             'output_dir': output_dir,
