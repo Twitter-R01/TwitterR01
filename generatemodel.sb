@@ -11,9 +11,10 @@ date +"%D %T"
 module load anaconda3
 source activate bertweet
 
-# Navigate to the RITHM directory
+# Navigate to your TwitterR01 directory, the folder with generate_model.py in it
 cd /jet/home/bakerw/thesis_research/TwitterR01/classifiers/BERTweet
 
+# python3 generate_model.py [relevance, commercial, policy, or sentiment] [file with coded tweets (either policy or comm file)] [data directory with parsed tweets which have IDs matching coded file]
 python3 generate_model.py policy Policy_2.24.21.csv /ocean/projects/sbe180010p/bakerw/data_for_model_test/policy
 
 echo End time:
