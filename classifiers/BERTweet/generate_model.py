@@ -19,7 +19,7 @@ from sklearn.metrics import roc_auc_score
 from scipy.special import softmax
 
 def classification_model(num_labels, output_dir):
-    return ClassificationModel('bertweet', 'vinai/bertweet-base', num_labels=num_labels,
+    return ClassificationModel('bertweet', 'vinai/bertweet-base', num_labels=num_labels, use_cuda=False,
                                       args={'num_train_epochs': 10, 
                                             'train_batch_size': 32,
                                             'output_dir': output_dir,
@@ -33,7 +33,7 @@ def read_coded_file(tweet_codes_file, column_names):
 
 def generate_final_df(df_annotated, id_list, parsed_directory):
     final_df = pd.DataFrame(columns=['t_id','t_text','t_quote'], dtype='str')
-    for subdir, dirs, files in os.walk(os.getcwd()+'\\'+parsed_directory):
+    for subdir, dirs, files in os.walk(parsed_directory):
         for filename in files:
             filepath = subdir + os.sep + filename
             if filepath.endswith(".tsv"):
