@@ -1,0 +1,20 @@
+#!/bin/bash
+#SBATCH -N 2
+#SBATCH -p RM
+#SBATCH -t 48:00:00
+#SBATCH -J model_gen
+
+echo Start time:
+date +"%D %T"
+
+# Load the correct version of python
+module load anaconda3
+source activate bertweet
+
+# Navigate to the RITHM directory
+cd /jet/home/bakerw/thesis_research/TwitterR01/classifiers/BERTweet
+
+python3 generate_model.py policy Policy_2.24.21.csv /ocean/projects/sbe180010p/bakerw/data_for_model_test/policy
+
+echo End time:
+date +"%D %T"
