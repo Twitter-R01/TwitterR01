@@ -50,7 +50,7 @@ cd ~/recipes/
 ```
 
 **5. Get started with Hookah recipe**
-   * Go to the [Wiki page](https://github.com/CRMTH/UArk/wiki/Recipe-01:-Hookah)
+   * Go to the [Wiki page](https://github.com/Twitter-R01/TwitterR01/wiki/Recipe-01:-Hookah)
    * Follow along with each of the steps
 
 #### For next week: 
@@ -169,7 +169,7 @@ git branch
 
 
 **4. Back to the Hookah recipe: keyword frequency counts**
-   * Go to the [Wiki page](https://github.com/CRMTH/UArk/wiki/Recipe-01:-Hookah)
+   * Go to the [Wiki page](https://github.com/Twitter-R01/TwitterR01/wiki/Recipe-01:-Hookah)
    * Follow along with each of the steps
 
 #### For next week: 
@@ -244,7 +244,7 @@ LARGE DUPLICATES:    0
 
 
 **3. Back to the Hookah recipe: data subsampling**
-   * Go to the [Wiki page](https://github.com/CRMTH/UArk/wiki/Recipe-01:-Hookah)
+   * Go to the [Wiki page](https://github.com/Twitter-R01/TwitterR01/wiki/Recipe-01:-Hookah)
    * Follow along with each of the steps
 
 
@@ -322,7 +322,7 @@ date	files	tweets	uptime	uptime_pct
 ```
 
 **4. Onward to the Alcohol recipe:**
-   * Go to the [Wiki page](https://github.com/CRMTH/UArk/wiki/Recipe-03:-Vape-&-alcohol)
+   * Go to the [Wiki page](https://github.com/Twitter-R01/TwitterR01/wiki/Recipe-03:-Vape-&-Alcohol)
    * Follow along with each of the steps for multiparsing
 
 
